@@ -37,7 +37,9 @@ function playRound(computerSelection, playerSelection) {
     } else if (computerSelection === "scissors" && playerSelection === "paper") {
         computerWins++;
         return "You lose! Scissors beat paper!";
-    } else if ((computerSelection === "rock" && playerSelection === "rock") || (computerSelection === "paper" && playerSelection === "paper") || (computerSelection === "scissors" && playerSelection === "scissors")) {
+    } else if ((computerSelection === "rock" && playerSelection === "rock") 
+                || (computerSelection === "paper" && playerSelection === "paper") 
+                || (computerSelection === "scissors" && playerSelection === "scissors")) {
         alert("It's a tie - you chose the same thing! Let's retry this round");
         return playRound(getComputerChoice(), getPlayerChoice());
     }
