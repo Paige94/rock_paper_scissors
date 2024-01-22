@@ -49,9 +49,6 @@ function playRound(computerSelection, playerSelection) {
 function game() {
     for (let i = 1; i < 6; i++) {
         console.log(playRound(getComputerChoice(), getPlayerChoice()));
-        console.log(playerWins);
-        console.log(computerWins);
-        console.log(i);
     }
     // Let player know if they're the winner or loser, best of the 5 games played
     if (playerWins > computerWins) {
