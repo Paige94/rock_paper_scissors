@@ -40,27 +40,47 @@ function playRound(computerSelection, playerSelection) {
     } else if ((computerSelection === "rock" && playerSelection === "rock") 
                 || (computerSelection === "paper" && playerSelection === "paper") 
                 || (computerSelection === "scissors" && playerSelection === "scissors")) {
-        alert("It's a tie - you chose the same thing! Let's retry this round");
-        return playRound(getComputerChoice(), getPlayerChoice());
+        return "It's a tie - you chose the same thing!";
     }
     }
-
-// Play a set of 5 rounds
-function game() {
-    for (let i = 1; i < 6; i++) {
-        console.log(playRound(getComputerChoice(), getPlayerChoice()));
-    }
-    // Let player know if they're the winner or loser, best of the 5 games played
-    if (playerWins > computerWins) {
-        alert(`End of game! You won ${playerWins} times and the computer won ${computerWins} times, so you won!`)
-    } else if (playerWins < computerWins) {
-        alert(`End of game! You won ${playerWins} times and the computer won ${computerWins} times, so you lost!`)
-    }
-}
 
 // Initialise the 'no. rounds won' counters
 let playerWins = 0;
 let computerWins = 0;
 
 // Run the game
-game();
+const buttons = document.querySelectorAll('button');
+const resultList = document.querySelector('#results');
+const playerScore = document.querySelector('#playerScore');
+const computerScore = document.querySelector('#computerScore');
+
+// Run game in response to button clicks
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const playerChoice = button.id;
+        const result = (playRound(getComputerChoice(), playerChoice));
+        const showResult = document.createElement('p');
+        showResult.textContent = result;
+
+        playerScore.textContent = '😄 Player:';
+        playerScore.textContent = `${playerScore.textContent} ${playerWins}`;
+
+        computerScore.textContent = '🤖 Computer:';
+        computerScore.textContent = `${computerScore.textContent} ${computerWins}`;
+
+        computerScore.appendChild(showResult);
+
+        if (playerWins === 5 || computerWins ===5) {
+            const showFinalResult = document.createElement('p');
+            showFinalResult.id = 'showFinalResult';
+
+            if (playerWins > computerWins) {
+                showFinalResult.textContent = "🎉 End of game! You won 🎉";
+            } else if (playerWins < computerWins) {
+                showFinalResult.textContent = "😭 End of game! You lost 😭";
+            }
+            computerScore.appendChild(showFinalResult);
+        }
+    })
+})
+

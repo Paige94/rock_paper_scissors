@@ -1,0 +1,11 @@
+body {
+    text-align: center;
+}
+
+#choice {
+    margin-top: 40px;
+}
+
+#showFinalResult {
+    font-size: 30px;
+}
